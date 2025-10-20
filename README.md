@@ -15,9 +15,9 @@ A polished, two-thumb range slider for SwiftUI. Bind a `ClosedRange<Value>`, dra
 - Swift tools 6.2+
 - Platforms (as declared in `Package.swift`):
   - iOS 18.0+
-  - macOS 11.0+
+  - macOS 12.0+
 
-Note: The implementation uses APIs that gracefully fall back when tint is unavailable (`.fill(.tint)` guarded with `#available`). If you lower platform versions in your own fork, the code path still compiles with the provided fallback.
+Note: This package targets modern platforms (iOS 18+, macOS 12+). Older platform向けのフォールバックコードは含みません。
 
 ## Installation (Swift Package Manager)
 ### Xcode UI

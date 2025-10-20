@@ -6,7 +6,7 @@ let package = Package(
   name: "swiftui-closed-range-slider",
   platforms: [
     .iOS("18.0"),
-    .macOS("11.0"),
+    .macOS("12.0"),
   ],
   products: [
     .library(name: "ClosedRangeSlider", targets: ["ClosedRangeSlider"]),
