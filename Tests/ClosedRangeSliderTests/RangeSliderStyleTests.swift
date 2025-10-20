@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @Test("Default style has expected metrics")
 func default_style_metrics() async throws {
@@ -10,4 +10,3 @@ func default_style_metrics() async throws {
     #expect(style.thumbSize.height == 28)
     #expect(style.highlightColor == nil)
 }
-

@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @MainActor @Test("HighlightTrack compiles and positions with given inputs")
 func highlight_track_constructs() async throws {
@@ -30,4 +30,3 @@ func highlight_width_math() async throws {
     let expected = totalWidth * CGFloat(fracUpper - fracLower)
     #expect(abs(width - expected) < 1e-9)
 }
-

@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @Test("Clamp returns in-range value")
 func clamp_basic() async throws {
@@ -54,4 +54,3 @@ func zero_width_mapping_safe() async throws {
     let v: Double = RangeSliderMath.value(from: inset, totalWidth: width, leadingInset: inset, in: bounds)
     #expect(abs(v - bounds.lowerBound) < 1e-9)
 }
-
