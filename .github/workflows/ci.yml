@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+      - run: swift build -v
+
+  test:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v5
+      - run: swift test -v --parallel

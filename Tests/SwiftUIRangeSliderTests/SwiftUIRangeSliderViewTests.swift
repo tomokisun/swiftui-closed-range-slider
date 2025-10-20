@@ -1,0 +1,25 @@
+import SwiftUI
+import Testing
+@testable import SwiftUIRangeSlider
+
+@MainActor @Test("RangeSlider can be constructed")
+func construct_view() async throws {
+    var range: ClosedRange<Double> = 0.2...0.7
+    let binding = Binding(get: { range }, set: { range = $0 })
+    let view = RangeSlider(binding, in: 0...1, step: 0.1, minimumDistance: 0.05)
+    #expect(String(describing: type(of: view)).contains("RangeSlider"))
+}
+
+@MainActor @Test("Construct with formatter and style modifiers")
+func construct_with_modifiers() async throws {
+    var range: ClosedRange<Double> = 10...20
+    let binding = Binding(get: { range }, set: { range = $0 })
+    let view = RangeSlider(binding, in: 0...100)
+        .rangeSliderValueFormatter { v in "\(Int(Double(v)))" }
+        .rangeSliderTrackHeight(8)
+        .rangeSliderThumbSize(CGSize(width: 40, height: 24))
+        .rangeSliderTrackColor(.red)
+        .rangeSliderThumbColor(.blue)
+    #expect(String(describing: type(of: view)).contains("RangeSlider"))
+}
+
