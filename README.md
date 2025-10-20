@@ -28,7 +28,7 @@ Note: The implementation uses APIs that gracefully fall back when tint is unavai
 ### `Package.swift`
 ```swift
 // Add to dependencies (example using the main branch)
-.package(url: "https://github.com/tomokisun/swiftui-range-slider.git", branch: "main"),
+.package(url: "https://github.com/tomokisun/swiftui-range-slider", from: "0.2.0"),
 
 // Add product to your target dependencies
 .target(
