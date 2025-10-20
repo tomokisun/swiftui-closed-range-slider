@@ -12,10 +12,10 @@ jobs:
     runs-on: macos-26
     steps:
       - uses: actions/checkout@v5
-      - run: swift build -v
+      - run: swift build
 
   test:
     runs-on: macos-26
     steps:
       - uses: actions/checkout@v5
-      - run: swift test -v --parallel
+      - run: swift test
