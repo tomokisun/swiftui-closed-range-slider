@@ -56,7 +56,7 @@ struct ContentView: View {
                 .padding(.horizontal, 24)
 
             Text("Quantity: \(quantity.lowerBound) – \(quantity.upperBound)")
-            // Intレンジでも同じAPIで利用できます（内部でDoubleにブリッジ）
+            // Same API works for Int ranges (internally bridged to Double)
             RangeSlider($quantity, in: 0...10, step: 1)
                 .rangeSliderTint(.orange)
                 .padding(.horizontal, 24)

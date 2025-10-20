@@ -1,15 +1,15 @@
 import SwiftUI
 
-/// Int用のコンビニエンス初期化子。
-/// 内部では `Double` ベースの `RangeSlider` を使用し、値変換（Int <> Double）を透過的に行います。
+/// Convenience initializer for Int ranges.
+/// Uses a `Double`-based `RangeSlider` internally and transparently handles Int <> Double conversions.
 public extension RangeSlider where Value == Double {
-    /// Intレンジに対応した初期化子。
+    /// Creates a range slider for Int ranges.
     /// - Parameters:
-    ///   - value: 選択中レンジ（Int）のバインディング。
-    ///   - bounds: 選択可能な全体レンジ（Int）。
-    ///   - step: 刻み幅。既定は `1`。
-    ///   - minimumDistance: 下限と上限の最小距離。既定は `0`。
-    ///   - onEditingChanged: ドラッグ開始/終了で呼び出されます。
+    ///   - value: Binding to the selected Int range.
+    ///   - bounds: The overall selectable Int range.
+    ///   - step: Step increment. Defaults to `1`.
+    ///   - minimumDistance: Minimum distance between lower and upper bounds. Defaults to `0`.
+    ///   - onEditingChanged: Called when dragging starts or ends.
     init(
         _ value: Binding<ClosedRange<Int>>,
         in bounds: ClosedRange<Int>,
@@ -21,7 +21,7 @@ public extension RangeSlider where Value == Double {
         precondition(bounds.lowerBound <= bounds.upperBound, "bounds must be a valid closed range")
         precondition(step > 0, "step must be > 0")
 
-        // Int <-> Double のブリッジ
+        // Bridge Int <-> Double
         let doubleBounds = Double(bounds.lowerBound)...Double(bounds.upperBound)
         let doubleStep: Double = Double(step)
         let doubleMinDistance: Double = Double(minimumDistance)
@@ -32,7 +32,7 @@ public extension RangeSlider where Value == Double {
                 return Double(r.lowerBound)...Double(r.upperBound)
             },
             set: { newRange in
-                // 近傍の整数へ丸め、Intレンジへ反映（境界も念のためクランプ）
+                // Round to nearest integer and map back to Int range (with clamping to bounds)
                 let l = Int(newRange.lowerBound.rounded())
                 let u = Int(newRange.upperBound.rounded())
                 let clampedLower = max(bounds.lowerBound, min(bounds.upperBound, l))

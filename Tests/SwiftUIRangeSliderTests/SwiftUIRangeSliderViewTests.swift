@@ -27,7 +27,7 @@ func construct_with_modifiers() async throws {
 func construct_int_view() async throws {
     var intRange: ClosedRange<Int> = 20...60
     let binding = Binding(get: { intRange }, set: { intRange = $0 })
-    // Int用API（内部では Double を使用）
+    // Int API (uses Double internally)
     let view = RangeSlider(binding, in: 0...100, step: 1, minimumDistance: 0)
         .rangeSliderTint(.orange)
     #expect(String(describing: type(of: view)).contains("RangeSlider"))
