@@ -31,3 +31,4 @@ struct RangeSliderLayoutDirectionTransform<Value: BinaryFloatingPoint & Comparab
         return RangeSliderMath.value(forFraction: frac, in: bounds)
     }
 }
+

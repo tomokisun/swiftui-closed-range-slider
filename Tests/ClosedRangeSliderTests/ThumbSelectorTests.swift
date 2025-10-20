@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @Test("Active thumb is chosen by proximity")
 func choose_active_thumb() async throws {

@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @Test("RTL: value/x round-trip is stable")
 func rtl_roundtrip_mapping() async throws {

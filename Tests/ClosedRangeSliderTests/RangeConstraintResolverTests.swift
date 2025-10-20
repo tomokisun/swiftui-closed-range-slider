@@ -1,6 +1,6 @@
 import SwiftUI
 import Testing
-@testable import SwiftUIRangeSlider
+@testable import ClosedRangeSlider
 
 @Test("Range update logic enforces min distance and snapping")
 func resolver_update_rules() async throws {
@@ -111,4 +111,3 @@ func resolve_unified_equals_specific() async throws {
     #expect(abs(upperSpecific.lowerBound - upperUnified.lowerBound) < 1e-12)
     #expect(abs(upperSpecific.upperBound - upperUnified.upperBound) < 1e-12)
 }
-

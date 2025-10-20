@@ -1,12 +1,12 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
-// Module: SwiftUIRangeSlider
+// Module: ClosedRangeSlider
 
 import SwiftUI
 
 /// A control for selecting a continuous range of numeric values.
 ///
-/// RangeSlider provides two draggable thumbs to adjust the lower and upper
+/// ClosedRangeSlider provides two draggable thumbs to adjust the lower and upper
 /// bounds within a specified range. The selected range is highlighted along
 /// the track.
 ///
@@ -21,7 +21,7 @@ import SwiftUI
 ///     var body: some View {
 ///         VStack(spacing: 24) {
 ///             Text("Price: \(Int(price.lowerBound)) – \(Int(price.upperBound))")
-///             RangeSlider($price, in: 0...100, step: 1)
+///             ClosedRangeSlider($price, in: 0...100, step: 1)
 ///                 .rangeSliderTint(Color(red: 1.0, green: 0.56, blue: 0.47)) // highlight color
 ///                 .padding(.horizontal, 24)
 ///         }
@@ -33,7 +33,7 @@ import SwiftUI
 /// Notes:
 /// - Respects environment layout direction. In RTL contexts values are mirrored
 ///   so that smaller values appear to the right.
-public struct RangeSlider<Value>: View where Value: BinaryFloatingPoint & Comparable {
+public struct ClosedRangeSlider<Value>: View where Value: BinaryFloatingPoint & Comparable {
   // MARK: - Public configuration
   
   @Environment(\.layoutDirection) private var layoutDirection
@@ -286,31 +286,31 @@ public struct RangeSlider<Value>: View where Value: BinaryFloatingPoint & Compar
 
 // MARK: - Styling helpers
 
-public extension RangeSlider {
+public extension ClosedRangeSlider {
   /// Sets the highlight color for the selected range.
   /// - Parameter color: The highlight color to use.
-  /// - Returns: A modified `RangeSlider`.
-  func rangeSliderTint(_ color: Color) -> RangeSlider { reconfigured(highlightColor: color) }
+  /// - Returns: A modified `ClosedRangeSlider`.
+  func rangeSliderTint(_ color: Color) -> ClosedRangeSlider { reconfigured(highlightColor: color) }
   
   /// Sets a custom value formatter used for accessibility (and future labels).
   /// - Parameter formatter: Closure that converts values to strings.
-  func rangeSliderValueFormatter(_ formatter: @escaping (Value) -> String) -> RangeSlider { reconfigured(valueFormatter: formatter) }
+  func rangeSliderValueFormatter(_ formatter: @escaping (Value) -> String) -> ClosedRangeSlider { reconfigured(valueFormatter: formatter) }
 
   /// Sets track height.
-  func rangeSliderTrackHeight(_ height: CGFloat) -> RangeSlider { reconfigured(trackHeight: height) }
+  func rangeSliderTrackHeight(_ height: CGFloat) -> ClosedRangeSlider { reconfigured(trackHeight: height) }
 
   /// Sets thumb size.
-  func rangeSliderThumbSize(_ size: CGSize) -> RangeSlider { reconfigured(thumbSize: size) }
+  func rangeSliderThumbSize(_ size: CGSize) -> ClosedRangeSlider { reconfigured(thumbSize: size) }
 
   /// Sets base (unselected) track color.
-  func rangeSliderTrackColor(_ color: Color) -> RangeSlider { reconfigured(trackColor: color) }
+  func rangeSliderTrackColor(_ color: Color) -> ClosedRangeSlider { reconfigured(trackColor: color) }
 
   /// Sets thumb fill color.
-  func rangeSliderThumbColor(_ color: Color) -> RangeSlider { reconfigured(thumbColor: color) }
+  func rangeSliderThumbColor(_ color: Color) -> ClosedRangeSlider { reconfigured(thumbColor: color) }
 }
 // MARK: - Internal helpers
 
-private extension RangeSlider {
+private extension ClosedRangeSlider {
   /// Returns a copy with updated style-related parameters.
   func reconfigured(
     trackHeight: CGFloat? = nil,
@@ -319,7 +319,7 @@ private extension RangeSlider {
     thumbColor: Color? = nil,
     highlightColor: Color? = nil,
     valueFormatter: ((Value) -> String)? = nil
-  ) -> RangeSlider {
+  ) -> ClosedRangeSlider {
     var newStyle = self.style
     if let trackHeight { newStyle.trackHeight = trackHeight }
     if let thumbSize { newStyle.thumbSize = thumbSize }
@@ -327,7 +327,7 @@ private extension RangeSlider {
     if let thumbColor { newStyle.thumbColor = thumbColor }
     if let highlightColor { newStyle.highlightColor = highlightColor }
 
-    return RangeSlider(
+    return ClosedRangeSlider(
       value: value,
       bounds: bounds,
       step: step,
@@ -344,12 +344,12 @@ private extension RangeSlider {
 // MARK: - Preview (for development)
 
 #if DEBUG
-struct RangeSlider_Previews: PreviewProvider {
+struct ClosedRangeSlider_Previews: PreviewProvider {
   struct Demo: View {
     @State private var values: ClosedRange<Double> = 0.2...0.7
     var body: some View {
       VStack(spacing: 32) {
-        RangeSlider($values, in: 0...1, step: 0.01, minimumDistance: 0.05)
+        ClosedRangeSlider($values, in: 0...1, step: 0.01, minimumDistance: 0.05)
           .rangeSliderTint(Color(red: 0.98, green: 0.55, blue: 0.46))
         Text("\(values.lowerBound, specifier: "%.2f") – \(values.upperBound, specifier: "%.2f")")
       }
