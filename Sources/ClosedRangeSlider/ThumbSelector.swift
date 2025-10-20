@@ -11,3 +11,4 @@ enum ThumbSelector {
         return chooseLower ? .lower : .upper
     }
 }
+

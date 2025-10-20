@@ -1,8 +1,8 @@
 import SwiftUI
 
 /// Convenience initializer for Int ranges.
-/// Uses a `Double`-based `RangeSlider` internally and transparently handles Int <> Double conversions.
-public extension RangeSlider where Value == Double {
+/// Uses a `Double`-based `ClosedRangeSlider` internally and transparently handles Int <> Double conversions.
+public extension ClosedRangeSlider where Value == Double {
     /// Creates a range slider for Int ranges.
     /// - Parameters:
     ///   - value: Binding to the selected Int range.
@@ -50,4 +50,3 @@ public extension RangeSlider where Value == Double {
         )
     }
 }
-

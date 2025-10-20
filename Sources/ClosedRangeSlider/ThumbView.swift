@@ -32,3 +32,4 @@ private struct _RangeSliderThumbContent: View {
             .overlay(shape.stroke(border))
     }
 }
+

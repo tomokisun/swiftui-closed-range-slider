@@ -14,15 +14,11 @@ struct RangeSliderHighlightTrack: View {
             if let highlightColor {
                 shape.fill(highlightColor)
             } else {
-                if #available(iOS 15.0, macOS 12.0, *) {
-                    shape.fill(.tint)
-                } else {
-                    shape.fill(Color.accentColor)
-                }
+                // iOS 18+ / macOS 12+ 前提のため、常に .tint を使用
+                shape.fill(.tint)
             }
         }
         .frame(width: max(width, 0), height: trackHeight)
         .position(x: center.x, y: center.y)
     }
 }
-
