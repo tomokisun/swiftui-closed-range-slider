@@ -3,18 +3,18 @@
 import PackageDescription
 
 let package = Package(
-  name: "swiftui-range-slider",
+  name: "swiftui-closed-range-slider",
   platforms: [
     .iOS("18.0"),
     .macOS("11.0"),
   ],
   products: [
-    .library(name: "SwiftUIRangeSlider", targets: ["SwiftUIRangeSlider"]),
+    .library(name: "ClosedRangeSlider", targets: ["ClosedRangeSlider"]),
   ],
   targets: [
-    .target(name: "SwiftUIRangeSlider"),
-    .testTarget(name: "SwiftUIRangeSliderTests", dependencies: [
-      "SwiftUIRangeSlider"
+    .target(name: "ClosedRangeSlider"),
+    .testTarget(name: "ClosedRangeSliderTests", dependencies: [
+      "ClosedRangeSlider"
     ]),
   ]
 )
