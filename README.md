@@ -1,4 +1,4 @@
-# SwiftUIRangeSlider
+# ClosedRangeSlider
 
 A polished, two-thumb range slider for SwiftUI. Bind a `ClosedRange<Value>`, drag the lower/upper thumbs, and get a highlighted selection along the track. The API mirrors SwiftUI’s `Slider` where it makes sense—simple by default, configurable when needed.
 
@@ -23,7 +23,7 @@ Note: The implementation uses APIs that gracefully fall back when tint is unavai
 ### Xcode UI
 1. File > Add Packages…
 2. Enter: `https://github.com/tomokisun/swiftui-range-slider.git`
-3. Add the product `SwiftUIRangeSlider` to your target
+3. Add the product `ClosedRangeSlider` to your target
 
 ### `Package.swift`
 ```swift
@@ -34,7 +34,7 @@ Note: The implementation uses APIs that gracefully fall back when tint is unavai
 .target(
   name: "YourApp",
   dependencies: [
-    .product(name: "SwiftUIRangeSlider", package: "swiftui-range-slider")
+    .product(name: "ClosedRangeSlider", package: "swiftui-range-slider")
   ]
 )
 ```
@@ -42,7 +42,7 @@ Note: The implementation uses APIs that gracefully fall back when tint is unavai
 ## Quick Start
 ```swift
 import SwiftUI
-import SwiftUIRangeSlider
+import ClosedRangeSlider
 
 struct ContentView: View {
     @State private var price: ClosedRange<Double> = 20...60
@@ -51,13 +51,13 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 24) {
             Text("Price: \(Int(price.lowerBound)) – \(Int(price.upperBound))")
-            RangeSlider($price, in: 0...100, step: 1)
+            ClosedRangeSlider($price, in: 0...100, step: 1)
                 .rangeSliderTint(Color(red: 1.0, green: 0.56, blue: 0.47)) // highlight color
                 .padding(.horizontal, 24)
 
             Text("Quantity: \(quantity.lowerBound) – \(quantity.upperBound)")
             // Same API works for Int ranges (internally bridged to Double)
-            RangeSlider($quantity, in: 0...10, step: 1)
+            ClosedRangeSlider($quantity, in: 0...10, step: 1)
                 .rangeSliderTint(.orange)
                 .padding(.horizontal, 24)
         }
@@ -69,7 +69,7 @@ struct ContentView: View {
 ## API
 ### Initializer
 ```swift
-RangeSlider(
+ClosedRangeSlider(
   _ value: Binding<ClosedRange<Value>>,
   in bounds: ClosedRange<Value>,
   step: Value? = nil,
@@ -89,7 +89,7 @@ Preconditions enforce invariants (e.g. non‑negative `minimumDistance`, positiv
 
 ### Int Range Convenience Initializer
 ```swift
-RangeSlider(
+ClosedRangeSlider(
   _ value: Binding<ClosedRange<Int>>,
   in bounds: ClosedRange<Int>,
   step: Int = 1,
@@ -108,7 +108,7 @@ RangeSlider(
 - `.rangeSliderThumbColor(_ color: Color)`: thumb fill color
 
 ```swift
-RangeSlider($range, in: 0...1, step: 0.01, minimumDistance: 0.05)
+ClosedRangeSlider($range, in: 0...1, step: 0.01, minimumDistance: 0.05)
   .rangeSliderTint(.pink)
   .rangeSliderTrackHeight(8)
   .rangeSliderThumbSize(CGSize(width: 40, height: 24))
