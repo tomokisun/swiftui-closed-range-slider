@@ -28,7 +28,7 @@ Note: This package targets modern platforms (iOS 18+, macOS 12+). Older platform
 ### `Package.swift`
 ```swift
 // Add to dependencies (example using the main branch)
-.package(url: "https://github.com/tomokisun/swiftui-range-slider", from: "0.2.0"),
+.package(url: "https://github.com/tomokisun/swiftui-range-slider", from: "1.0.0"),
 
 // Add product to your target dependencies
 .target(
