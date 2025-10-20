@@ -4,6 +4,7 @@ A polished, two-thumb range slider for SwiftUI. Bind a `ClosedRange<Value>`, dra
 
 ## Features
 - Generic value type: `Value: BinaryFloatingPoint & Comparable` (e.g. `Double`, `CGFloat`)
+- Convenience initializer for `ClosedRange<Int>` (internally bridged to `Double`)
 - Step increments (`step`) and minimum distance between thumbs (`minimumDistance`)
 - Automatic RTL mirroring using the environment layout direction
 - Customizable appearance: track, thumb, and highlight with sensible defaults
@@ -45,12 +46,19 @@ import SwiftUIRangeSlider
 
 struct ContentView: View {
     @State private var price: ClosedRange<Double> = 20...60
+    @State private var quantity: ClosedRange<Int> = 1...5
 
     var body: some View {
         VStack(spacing: 24) {
             Text("Price: \(Int(price.lowerBound)) – \(Int(price.upperBound))")
             RangeSlider($price, in: 0...100, step: 1)
                 .rangeSliderTint(Color(red: 1.0, green: 0.56, blue: 0.47)) // highlight color
+                .padding(.horizontal, 24)
+
+            Text("Quantity: \(quantity.lowerBound) – \(quantity.upperBound)")
+            // Intレンジでも同じAPIで利用できます（内部でDoubleにブリッジ）
+            RangeSlider($quantity, in: 0...10, step: 1)
+                .rangeSliderTint(.orange)
                 .padding(.horizontal, 24)
         }
         .padding()
@@ -78,6 +86,18 @@ RangeSlider(
 - `onEditingChanged`: Called with `true` on drag start and `false` on drag end
 
 Preconditions enforce invariants (e.g. non‑negative `minimumDistance`, positive `step` when set).
+
+### Int Range Convenience Initializer
+```swift
+RangeSlider(
+  _ value: Binding<ClosedRange<Int>>,
+  in bounds: ClosedRange<Int>,
+  step: Int = 1,
+  minimumDistance: Int = 0,
+  onEditingChanged: @escaping (Bool) -> Void = { _ in }
+)
+// Internally mapped to Double for layout/math; same styling modifiers are available.
+```
 
 ### Styling Modifiers
 - `.rangeSliderTint(_ color: Color)`: highlight color for the selected range
